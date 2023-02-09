@@ -5045,6 +5045,10 @@ figcaption {
   text-align: center;
 }
 
+.image-23 {
+  width: 100%;
+}
+
 @media screen and (max-width: 991px) {
   .section.cc-product-detail {
     -webkit-box-orient: vertical;
@@ -7093,6 +7097,20 @@ figcaption {
 }
 
 #w-node-e92758ee-146e-3369-2003-5903d5b2f01a-c13b0e0d {
+  -ms-grid-column-align: end;
+  justify-self: end;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+}
+
+#w-node-_69c362b8-faa3-8f57-e503-b02362af9cbf-c13b0e0d {
+  -ms-grid-column-align: end;
+  justify-self: end;
+}
+
+#w-node-_2dad644e-0852-9284-e9fd-5e6e3ec7b29d-c13b0e0d {
   -ms-grid-column-align: end;
   justify-self: end;
   -webkit-align-self: center;
