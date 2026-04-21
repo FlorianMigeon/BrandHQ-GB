@@ -1,0 +1,156 @@
+/* ============================================================
+   PIGALLE — Design Tokens
+   Colors, Typography, Spacing
+   v1.0
+============================================================ */
+
+/* ── FONTS ─────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'BigShoulders';
+  src: url('fonts/BigShouldersDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'BigShoulders';
+  src: url('fonts/BigShouldersDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Antonio';
+  src: url('fonts/Antonio-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'WorkSans';
+  src: url('fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('fonts/Barlow-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'InriaSans';
+  src: url('fonts/InriaSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'InriaSans';
+  src: url('fonts/InriaSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ── COLOR TOKENS ───────────────────────────────────────────── */
+
+:root {
+  /* Core palette */
+  --noir:          #0A0808;   /* Main background, bottle glass     */
+  --noir-soft:     #140F0F;   /* Secondary surfaces, cards         */
+  --rouge:         #E22A1A;   /* Primary brand color, label        */
+  --rouge-deep:    #B81F0E;   /* Hover states, shadows             */
+  --rouge-light:   #F04030;   /* Bright accents, highlights        */
+  --cerise:        #7A1415;   /* Liquid color, depth               */
+  --cerise-dark:   #3D0809;   /* Deep backgrounds, dark sections   */
+  --stone:         #EDE8E3;   /* Primary text on dark              */
+  --stone-mid:     #C8C1B9;   /* Secondary text, captions          */
+  --stone-dark:    #9A9390;   /* Tertiary text, metadata           */
+  --cream:         #F5F0EA;   /* Light backgrounds, print/co-brand */
+
+  /* Semantic aliases */
+  --color-text-primary:    var(--stone);
+  --color-text-secondary:  var(--stone-mid);
+  --color-text-tertiary:   var(--stone-dark);
+  --color-text-accent:     var(--rouge);
+  --color-bg-primary:      var(--noir);
+  --color-bg-secondary:    var(--noir-soft);
+  --color-bg-accent:       var(--rouge);
+  --color-bg-deep:         var(--cerise-dark);
+  --color-border:          rgba(255, 255, 255, 0.07);
+  --color-border-accent:   rgba(226, 42, 26, 0.25);
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────────── */
+
+  /* Font families */
+  --font-display:    'BigShoulders', sans-serif;  /* Headlines, brand, packaging */
+  --font-secondary:  'Antonio', sans-serif;       /* Subheadings, labels, nav    */
+  --font-body:       'WorkSans', sans-serif;      /* Body copy, UI               */
+  --font-editorial:  'InriaSans', sans-serif;     /* Long-form editorial text    */
+  --font-condensed:  'Barlow', sans-serif;        /* Compact UI labels           */
+
+  /* Type scale */
+  --text-3xs:  9px;
+  --text-2xs:  11px;
+  --text-xs:   13px;
+  --text-sm:   15px;
+  --text-md:   17px;
+  --text-lg:   22px;
+  --text-xl:   32px;
+  --text-2xl:  52px;
+  --text-3xl:  80px;
+  --text-4xl:  120px;
+  --text-5xl:  180px;
+
+  /* Letter spacing */
+  --tracking-tight:   0.02em;
+  --tracking-normal:  0.05em;
+  --tracking-wide:    0.12em;
+  --tracking-wider:   0.2em;
+  --tracking-widest:  0.3em;
+
+  /* Line heights */
+  --leading-none:    0.88;
+  --leading-tight:   1.1;
+  --leading-snug:    1.4;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose:   2;
+
+  /* ── SPACING ──────────────────────────────────────────────── */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  /* Layout */
+  --content-max-width: 1400px;
+  --slide-padding-x:   100px;
+  --slide-padding-y:   80px;
+
+  /* ── BORDERS & RADII ─────────────────────────────────────── */
+
+  --radius-none:  0px;       /* Pigalle uses sharp corners only  */
+  --radius-sm:    2px;       /* Micro rounding (badges)          */
+  --border-thin:  1px solid var(--color-border);
+  --border-accent: 1px solid var(--color-border-accent);
+
+  /* ── SHADOWS ─────────────────────────────────────────────── */
+
+  --shadow-bottle:   0 40px 80px rgba(226, 42, 26, 0.12);
+  --shadow-card:     0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 24px 64px rgba(0, 0, 0, 0.6);
+}

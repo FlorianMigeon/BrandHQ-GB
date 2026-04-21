@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pigalle — Design System</title>
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<style>
+  :root {
+    /* === LOCAL ALIASES (tokens defined in assets/colors_and_type.css) === */
+    --font-display:    'BigShoulders', sans-serif;
+    --font-secondary:  'Antonio', sans-serif;
+    --font-body:       'WorkSans', sans-serif;
+
+    /* === TYPOGRAPHY === */
+    --font-display: 'BigShoulders', sans-serif;
+    --font-secondary: 'Antonio', sans-serif;
+    --font-body: 'WorkSans', sans-serif;
+
+    /* === SPACING === */
+    --sp-xs: 8px;
+    --sp-sm: 16px;
+    --sp-md: 32px;
+    --sp-lg: 64px;
+    --sp-xl: 128px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--stone);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(10,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226,42,26,0.15);
+  }
+  .nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    line-height: 1;
+  }
+  .nav-brand-paris {
+    font-family: var(--font-secondary);
+    font-weight: 300;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+  }
+  .nav-brand-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--stone);
+    line-height: 0.9;
+  }
+  .nav-brand-sub {
+    font-family: var(--font-secondary);
+    font-weight: 300;
+    font-size: 7px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rouge);
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-secondary);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rouge); }
+
+  /* LAYOUT */
+  .section {
+    padding: 120px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section + .section {
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rouge);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--rouge);
+  }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 60%, #2a0808 0%, var(--noir) 70%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Medallion SVG */
+  .medallion {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(96px, 14vw, 220px);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--stone);
+    line-height: 0.9;
+    text-wrap: nowrap;
+  }
+  .hero-sub {
+    font-family: var(--font-secondary);
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+  }
+  .hero-rule {
+    width: 1px;
+    height: 64px;
+    background: linear-gradient(to bottom, var(--rouge), transparent);
+    margin-top: 16px;
+  }
+  .hero-tag {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+
+  /* ============================================================
+     COLORS
+  ============================================================ */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2px;
+  }
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .swatch-block {
+    height: 120px;
+  }
+  .swatch-info {
+    padding: 12px 14px;
+    background: var(--noir-soft);
+  }
+  .swatch-name {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+    margin-bottom: 4px;
+  }
+  .swatch-hex {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--stone);
+    letter-spacing: 0.05em;
+  }
+  .swatch-desc {
+    font-size: 10px;
+    color: var(--stone-dark);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ============================================================
+     TYPOGRAPHY
+  ============================================================ */
+  .type-specimen {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    align-items: start;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .type-meta {
+    padding-top: 8px;
+  }
+  .type-role {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rouge);
+    margin-bottom: 12px;
+  }
+  .type-name {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--stone);
+    margin-bottom: 4px;
+  }
+  .type-detail {
+    font-size: 11px;
+    color: var(--stone-dark);
+    line-height: 1.7;
+  }
+  .type-sample-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(72px, 8vw, 140px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .type-sample-secondary {
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 64px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+  }
+  .type-sample-body {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--stone);
+    max-width: 560px;
+  }
+  .type-sizes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .type-size-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .type-size-label {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--stone-dark);
+    min-width: 48px;
+    text-transform: uppercase;
+  }
+
+  /* ============================================================
+     BOTTLE / PRODUCT
+  ============================================================ */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .product-img-wrap {
+    background: var(--noir-soft);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.92;
+    transition: transform 0.6s ease, opacity 0.3s;
+  }
+  .product-img-wrap:hover img {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  .product-img-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    background: rgba(10,8,8,0.7);
+    padding: 6px 10px;
+  }
+  .product-info {
+    background: var(--noir-soft);
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+  }
+  .product-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 64px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: var(--stone);
+  }
+  .product-subtitle {
+    font-family: var(--font-secondary);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rouge);
+  }
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 32px;
+  }
+  .product-detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .product-detail-row span:first-child {
+    font-family: var(--font-secondary);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    font-size: 10px;
+  }
+  .product-detail-row span:last-child {
+    color: var(--stone-mid);
+  }
+
+  /* ============================================================
+     LABEL ANATOMY
+  ============================================================ */
+  .label-anatomy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .label-preview {
+    background: var(--rouge);
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 24px;
+    position: relative;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .label-preview-origin {
+    font-family: var(--font-secondary);
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(10,8,8,0.6);
+    margin-bottom: 2px;
+  }
+  .label-preview-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 80px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 0.85;
+    color: var(--noir);
+    writing-mode: horizontal-tb;
+  }
+  .label-preview-product {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(10,8,8,0.7);
+    margin-top: 6px;
+  }
+  .label-preview-specs {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 8px;
+    font-weight: 400;
+    color: rgba(10,8,8,0.5);
+    letter-spacing: 0.08em;
+  }
+  .label-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .label-rule {
+    padding-left: 20px;
+    border-left: 2px solid var(--rouge);
+  }
+  .label-rule-title {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-mid);
+    margin-bottom: 6px;
+  }
+  .label-rule-desc {
+    font-size: 13px;
+    color: var(--stone-dark);
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     MEDALLION
+  ============================================================ */
+  .medallion-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+  .medallion-card {
+    background: var(--noir-soft);
+    padding: 56px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .medallion-card-label {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    text-align: center;
+  }
+
+  /* ============================================================
+     VOICE / TONE
+  ============================================================ */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .voice-card {
+    background: var(--noir-soft);
+    padding: 48px;
+  }
+  .voice-card.rouge { background: var(--rouge); }
+  .voice-card.rouge .voice-title { color: var(--noir); }
+  .voice-card.rouge .voice-desc { color: rgba(10,8,8,0.7); }
+  .voice-card.rouge .voice-tags span { background: rgba(10,8,8,0.15); color: var(--noir); }
+  .voice-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 48px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: var(--stone);
+    margin-bottom: 20px;
+  }
+  .voice-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--stone-dark);
+    margin-bottom: 24px;
+  }
+  .voice-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .voice-tags span {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.06);
+    color: var(--stone-mid);
+    padding: 6px 12px;
+  }
+  .voice-quote {
+    font-family: var(--font-secondary);
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    color: var(--stone-mid);
+    grid-column: span 2;
+    background: var(--cerise-dark);
+    padding: 56px 48px;
+    position: relative;
+  }
+  .voice-quote::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 200px;
+    color: rgba(226,42,26,0.12);
+    position: absolute;
+    top: -20px;
+    left: 32px;
+    line-height: 1;
+  }
+
+  /* ============================================================
+     SPACING
+  ============================================================ */
+  .spacing-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    margin-bottom: 32px;
+  }
+  .spacing-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .spacing-bar {
+    background: var(--rouge);
+    width: 40px;
+    opacity: 0.8;
+  }
+  .spacing-label {
+    font-family: var(--font-secondary);
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    text-align: center;
+  }
+
+  /* ============================================================
+     UI COMPONENTS
+  ============================================================ */
+  .components-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .component-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .component-group-label {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    margin-bottom: 8px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--rouge);
+    color: var(--noir);
+  }
+  .btn-primary:hover { background: var(--rouge-light); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--stone);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .btn-secondary:hover { border-color: var(--rouge); color: var(--rouge); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--rouge);
+    border: 1px solid var(--rouge);
+  }
+  .btn-ghost:hover { background: var(--rouge); color: var(--noir); }
+
+  /* Tags/Badges */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-secondary);
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+  }
+  .badge-rouge { background: var(--rouge); color: var(--noir); }
+  .badge-noir { background: rgba(255,255,255,0.07); color: var(--stone-mid); }
+  .badge-outline { border: 1px solid rgba(255,255,255,0.2); color: var(--stone-dark); }
+
+  /* Input */
+  .input-field {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--stone);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-field::placeholder { color: var(--stone-dark); }
+  .input-field:focus { border-color: var(--rouge); }
+
+  /* Card */
+  .product-card {
+    background: var(--noir-soft);
+    overflow: hidden;
+  }
+  .product-card-img {
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #1a0808 0%, #0A0808 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 80px;
+    font-weight: 500;
+    color: rgba(226,42,26,0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .product-card-body {
+    padding: 20px;
+  }
+  .product-card-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 4px;
+  }
+  .product-card-sub {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+  }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  .footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 64px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rouge);
+  }
+  .footer-meta {
+    font-family: var(--font-secondary);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-dark);
+    text-align: right;
+    line-height: 2;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-brand-paris">Paris · France</div>
+    <div class="nav-brand-name">Pigalle</div>
+    <div class="nav-brand-sub">Liqueur de Cerise</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#logo">Logo</a></li>
+    <li><a href="#colors">Couleurs</a></li>
+    <li><a href="#typography">Typographie</a></li>
+    <li><a href="#product">Produit</a></li>
+    <li><a href="#label">Label</a></li>
+    <li><a href="#voice">Voix</a></li>
+    <li><a href="#components">Composants</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <!-- Medallion SVG -->
+    <svg class="medallion" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="58" fill="#0A0808" stroke="#E22A1A" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(226,42,26,0.25)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="43" fill="none" stroke="rgba(226,42,26,0.15)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="36" fill="none" stroke="rgba(226,42,26,0.1)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="22" fill="#140F0F"/>
+      <text font-family="BigShoulders, sans-serif" font-size="22" font-weight="500" fill="#E22A1A" text-anchor="middle" x="60" y="67">P</text>
+      <path id="arc-top" d="M 15,60 A 45,45 0 0,1 105,60" fill="none"/>
+      <path id="arc-bot" d="M 15,60 A 45,45 0 0,0 105,60" fill="none"/>
+      <text font-family="Antonio, sans-serif" font-size="6.5" fill="rgba(232,226,220,0.5)" letter-spacing="3">
+        <textPath href="#arc-top" startOffset="8%">LIQUEUR DE CERISE FRANÇAISE</textPath>
+      </text>
+      <text font-family="Antonio, sans-serif" font-size="6.5" fill="rgba(232,226,220,0.5)" letter-spacing="3">
+        <textPath href="#arc-bot" startOffset="8%">× PIGALLE × PARIS × FRANCE ×</textPath>
+      </text>
+    </svg>
+
+    <!-- Logo wordmark — exact same structure as logo section -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;margin:8px 0;">
+      <div style="font-family:var(--font-secondary);font-weight:300;font-size:16px;letter-spacing:0.45em;text-transform:uppercase;color:rgba(237,232,227,0.45);margin-bottom:4px;">Paris · France</div>
+      <div style="font-family:var(--font-display);font-weight:500;font-size:clamp(100px,13vw,200px);letter-spacing:0.03em;text-transform:uppercase;color:var(--stone);line-height:0.85;">Pigalle</div>
+      <div style="font-family:var(--font-secondary);font-weight:300;font-size:15px;letter-spacing:0.55em;text-transform:uppercase;color:rgba(237,232,227,0.45);margin-top:8px;">Liqueur de Cerise</div>
+    </div>
+    <div class="hero-rule"></div>
+    <p class="hero-tag">Design System · v1.0</p>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section id="logo" class="section">
+  <div class="section-label">01 — Logo</div>
+
+  <!-- Primary logo -->
+  <div style="margin-bottom:64px;">
+    <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone-dark);margin-bottom:24px;">Version principale</div>
+    <div style="display:inline-flex;flex-direction:column;align-items:center;padding:56px 80px;background:var(--noir-soft);gap:0;">
+      <div style="font-family:var(--font-secondary);font-weight:300;font-size:14px;letter-spacing:0.4em;text-transform:uppercase;color:var(--stone-mid);margin-bottom:2px;">Paris · France</div>
+      <div style="font-family:var(--font-display);font-weight:500;font-size:112px;letter-spacing:0.03em;text-transform:uppercase;color:var(--stone);line-height:0.88;">Pigalle</div>
+      <div style="font-family:var(--font-secondary);font-weight:300;font-size:13px;letter-spacing:0.5em;text-transform:uppercase;color:var(--stone-mid);margin-top:6px;">Liqueur de Cerise</div>
+    </div>
+  </div>
+
+  <!-- Color variants -->
+  <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone-dark);margin-bottom:24px;">Déclinaisons couleur</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:64px;">
+
+    <!-- Noir -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--noir-soft);padding:40px;display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--stone-mid);margin-bottom:2px;">Paris · France</div>
+        <div style="font-family:var(--font-display);font-weight:500;font-size:52px;letter-spacing:0.03em;text-transform:uppercase;color:var(--stone);line-height:0.88;">Pigalle</div>
+        <div style="font-family:var(--font-secondary);font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:var(--stone-mid);margin-top:4px;">Liqueur de Cerise</div>
+      </div>
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone-dark);">Sur Noir · Principal</div>
+    </div>
+
+    <!-- Rouge -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--rouge);padding:40px;display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(10,8,8,0.55);margin-bottom:2px;">Paris · France</div>
+        <div style="font-family:var(--font-display);font-weight:500;font-size:52px;letter-spacing:0.03em;text-transform:uppercase;color:var(--noir);line-height:0.88;">Pigalle</div>
+        <div style="font-family:var(--font-secondary);font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(10,8,8,0.55);margin-top:4px;">Liqueur de Cerise</div>
+      </div>
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone-dark);">Sur Rouge · Accent</div>
+    </div>
+
+    <!-- Blanc -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--cream);padding:40px;display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-bottom:2px;">Paris · France</div>
+        <div style="font-family:var(--font-display);font-weight:500;font-size:52px;letter-spacing:0.03em;text-transform:uppercase;color:var(--noir);line-height:0.88;">Pigalle</div>
+        <div style="font-family:var(--font-secondary);font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-top:4px;">Liqueur de Cerise</div>
+      </div>
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone-dark);">Sur Crème · Print / co-brand</div>
+    </div>
+
+    <!-- Cerise -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--cerise-dark);padding:40px;display:flex;flex-direction:column;align-items:center;gap:0;">
+        <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(232,226,220,0.45);margin-bottom:2px;">Paris · France</div>
+        <div style="font-family:var(--font-display);font-weight:500;font-size:52px;letter-spacing:0.03em;text-transform:uppercase;color:var(--stone);line-height:0.88;">Pigalle</div>
+        <div style="font-family:var(--font-secondary);font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(232,226,220,0.45);margin-top:4px;">Liqueur de Cerise</div>
+      </div>
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone-dark);">Sur Cerise · Sections profondes</div>
+    </div>
+  </div>
+
+  <!-- Usage rules -->
+  <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone-dark);margin-bottom:24px;">Règles d'usage</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div style="background:var(--noir-soft);padding:32px;">
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--rouge);margin-bottom:10px;">Espace de protection</div>
+      <p style="font-size:13px;color:var(--stone-mid);line-height:1.7;">Toujours laisser un espace de protection équivalent à la hauteur du "P" de Pigalle autour du logo. Ne jamais placer d'autres éléments dans cette zone.</p>
+    </div>
+    <div style="background:var(--noir-soft);padding:32px;">
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--rouge);margin-bottom:10px;">Taille minimum</div>
+      <p style="font-size:13px;color:var(--stone-mid);line-height:1.7;">Taille minimale : 80px de hauteur en digital, 20mm en print. En dessous, utiliser le monogramme P seul.</p>
+    </div>
+    <div style="background:var(--noir-soft);padding:32px;">
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--rouge);margin-bottom:10px;">À ne pas faire</div>
+      <p style="font-size:13px;color:var(--stone-mid);line-height:1.7;">Ne jamais étirer, déformer, recolorer partiellement, ou placer le logo sur un fond qui nuit à sa lisibilité. Pas d'ombre portée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section id="colors" class="section">
+  <div class="section-label">01 — Couleurs</div>
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#0A0808;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Noir</div>
+        <div class="swatch-hex">#0A0808</div>
+        <div class="swatch-desc">Fond principal, verre de la bouteille</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#140F0F;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Noir Doux</div>
+        <div class="swatch-hex">#140F0F</div>
+        <div class="swatch-desc">Surfaces secondaires, cartes</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#E22A1A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Rouge Signal</div>
+        <div class="swatch-hex">#E22A1A</div>
+        <div class="swatch-desc">Couleur principale de marque, label</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#B81F0E;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Rouge Profond</div>
+        <div class="swatch-hex">#B81F0E</div>
+        <div class="swatch-desc">États hover, ombre rouge</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#F04030;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Rouge Vif</div>
+        <div class="swatch-hex">#F04030</div>
+        <div class="swatch-desc">Accents lumineux, éclairages</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#7A1415;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Cerise</div>
+        <div class="swatch-hex">#7A1415</div>
+        <div class="swatch-desc">Couleur du liquide, profondeur</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#4A0A0B;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Cerise Noire</div>
+        <div class="swatch-hex">#4A0A0B</div>
+        <div class="swatch-desc">Fonds profonds, sections sombres</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#E8E2DC;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Pierre</div>
+        <div class="swatch-hex">#E8E2DC</div>
+        <div class="swatch-desc">Texte principal sur fond sombre</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#BFB8B0;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Pierre Moyenne</div>
+        <div class="swatch-hex">#BFB8B0</div>
+        <div class="swatch-desc">Texte secondaire, légendes</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#6B6461;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Pierre Sombre</div>
+        <div class="swatch-hex">#6B6461</div>
+        <div class="swatch-desc">Texte tertiaire, métadonnées</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography" class="section">
+  <div class="section-label">02 — Typographie</div>
+  <div class="type-specimen">
+
+    <!-- Display -->
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Display</div>
+        <div class="type-name">Big Shoulders Display</div>
+        <div class="type-detail">
+          Condensed · Medium (500)<br>
+          Titres, marque, packaging<br>
+          Uppercase obligatoire
+        </div>
+      </div>
+      <div>
+        <div class="type-sample-display">Liqueur<br>de Cerise</div>
+        <div style="margin-top:24px;" class="type-sizes">
+          <div class="type-size-row">
+            <span class="type-size-label">140px</span>
+            <span style="font-family:'BigShoulders';font-size:140px;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;line-height:1;color:var(--stone-mid);">Aa</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary -->
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Secondaire</div>
+        <div class="type-name">Antonio</div>
+        <div class="type-detail">
+          Variable · 100–700<br>
+          Sous-titres, labels, nav<br>
+          Uppercase · letter-spacing élevé
+        </div>
+      </div>
+      <div>
+        <div class="type-sample-secondary">Paris · France · Cerise</div>
+        <div style="margin-top: 24px;display:flex;flex-direction:column;gap:8px;">
+          <div class="type-size-row"><span class="type-size-label">10px</span><span style="font-family:'Antonio';font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--stone-mid);">LIQUEUR DE CERISE FRANÇAISE</span></div>
+          <div class="type-size-row"><span class="type-size-label">13px</span><span style="font-family:'Antonio';font-size:13px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mid);">Paris · France · 2024</span></div>
+          <div class="type-size-row"><span class="type-size-label">24px</span><span style="font-family:'Antonio';font-size:24px;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-mid);">70cl · 18% Vol.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-role">Corps</div>
+        <div class="type-name">Work Sans</div>
+        <div class="type-detail">
+          Variable · 300–600<br>
+          Corps de texte, descriptions<br>
+          Casse naturelle · line-height 1.7+
+        </div>
+      </div>
+      <div>
+        <p class="type-sample-body">Pigalle est une liqueur de cerise française, née dans l'un des quartiers les plus vibrants de Paris. Chaque gorgée révèle la profondeur de la cerise noire, capturée à son apogée et sublimée par un savoir-faire artisanal.</p>
+        <div style="margin-top: 24px;display:flex;flex-direction:column;gap:8px;">
+          <div class="type-size-row"><span class="type-size-label">12px</span><span style="font-family:'WorkSans';font-size:12px;font-weight:300;color:var(--stone-dark);">Mention légale — 18% vol. · 70cl</span></div>
+          <div class="type-size-row"><span class="type-size-label">14px</span><span style="font-family:'WorkSans';font-size:14px;font-weight:300;color:var(--stone-mid);">Description produit et contexte</span></div>
+          <div class="type-size-row"><span class="type-size-label">16px</span><span style="font-family:'WorkSans';font-size:16px;font-weight:300;color:var(--stone);">Corps principal de lecture</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section id="product" class="section" style="padding-bottom: 0;">
+  <div class="section-label">03 — Produit</div>
+</section>
+<div class="product-grid" style="max-width:1400px;margin:0 auto;">
+  <div class="product-img-wrap">
+    <img src="assets/bottle-3d.png" alt="Pigalle 3D render">
+    <div class="product-img-label">Rendu 3D · Bouteille</div>
+  </div>
+  <div class="product-info">
+    <div>
+      <div class="product-subtitle">Paris · France</div>
+      <div class="product-title">Pigalle<br>Liqueur</div>
+    </div>
+    <p style="font-size:14px;color:var(--stone-dark);line-height:1.8;">Une liqueur de cerise française née dans le quartier parisien de Pigalle. Le verre cannelé noir, le label rouge signal et le médaillon gravé forment un objet aussi beau qu'intense.</p>
+    <div class="product-details">
+      <div class="product-detail-row"><span>Contenu</span><span>70cl</span></div>
+      <div class="product-detail-row"><span>Degré</span><span>18% Vol.</span></div>
+      <div class="product-detail-row"><span>Origine</span><span>France</span></div>
+      <div class="product-detail-row"><span>Fruit</span><span>Cerise noire</span></div>
+      <div class="product-detail-row"><span>Finition</span><span>Bouchon noir mat</span></div>
+    </div>
+  </div>
+  <div class="product-img-wrap">
+    <img src="assets/bottle-photo.jpeg" alt="Pigalle photo réelle">
+    <div class="product-img-label">Photographie · En main</div>
+  </div>
+  <div class="product-img-wrap" style="background:var(--noir-soft);padding:64px;flex-direction:column;gap:24px;">
+    <img src="assets/cap-medallion.png" alt="Médaillon" style="width:200px;height:200px;object-fit:contain;border-radius:50%;">
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone-dark);">Médaillon · Bouchon</div>
+      <div style="font-family:var(--font-body);font-size:12px;color:var(--stone-mid);margin-top:8px;">Monogramme P — Liqueur de Cerise Française</div>
+    </div>
+    <div class="product-img-label" style="position:static;background:none;padding:0;">Fermeture personnalisée</div>
+  </div>
+</div>
+<div style="height:120px;"></div>
+
+<!-- LABEL ANATOMY -->
+<section id="label" class="section">
+  <div class="section-label">04 — Label</div>
+  <div class="label-anatomy">
+    <div class="label-preview">
+      <div class="label-preview-origin">Paris · France</div>
+      <div class="label-preview-name">Pigalle</div>
+      <div class="label-preview-product">Liqueur de Cerise</div>
+      <div class="label-preview-specs">
+        <span>70cl</span>
+        <span>18% vol.</span>
+      </div>
+    </div>
+    <div class="label-rules">
+      <div class="label-rule">
+        <div class="label-rule-title">Fond Rouge Signal</div>
+        <div class="label-rule-desc">Le label utilise exclusivement #E22A1A. Aucun dégradé, aucune texture — aplat pur pour un impact maximum.</div>
+      </div>
+      <div class="label-rule">
+        <div class="label-rule-title">Typographie Noire</div>
+        <div class="label-rule-desc">Tout le texte du label est en #0A0808 (Noir). Big Shoulders Display Medium pour le nom, Antonio pour les sous-titres.</div>
+      </div>
+      <div class="label-rule">
+        <div class="label-rule-title">Hiérarchie Verticale</div>
+        <div class="label-rule-desc">Origine en haut (petit), marque au centre (grand), produit en bas (moyen). Specs en bas dans la même grille.</div>
+      </div>
+      <div class="label-rule">
+        <div class="label-rule-title">Marges</div>
+        <div class="label-rule-desc">Padding minimum de 24px sur chaque côté. Le nom "PIGALLE" ne doit jamais toucher les bords du label.</div>
+      </div>
+      <div class="label-rule">
+        <div class="label-rule-title">Texte du Col</div>
+        <div class="label-rule-desc">Texte circulaire en Antonio, rouge sur noir. Répète "PARIS · FRANCE · PIGALLE ·" en boucle autour du col.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDALLION VARIANTS -->
+<section class="section" style="padding-top:0;">
+  <div class="section-label">04b — Médaillon</div>
+  <div class="medallion-section">
+    <!-- Black on dark -->
+    <div class="medallion-card">
+      <svg width="160" height="160" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="#0A0808" stroke="rgba(232,226,220,0.15)" stroke-width="0.5"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(232,226,220,0.08)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="43" fill="none" stroke="rgba(232,226,220,0.05)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="36" fill="none" stroke="rgba(232,226,220,0.04)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="22" fill="#140F0F"/>
+        <text font-family="BigShoulders, sans-serif" font-size="22" font-weight="500" fill="#E8E2DC" text-anchor="middle" x="60" y="67">P</text>
+        <path id="a1" d="M 16,60 A 44,44 0 0,1 104,60" fill="none"/>
+        <path id="a2" d="M 16,60 A 44,44 0 0,0 104,60" fill="none"/>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(232,226,220,0.45)" letter-spacing="2.5">
+          <textPath href="#a1" startOffset="5%">LIQUEUR DE CERISE FRANÇAISE</textPath>
+        </text>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(232,226,220,0.45)" letter-spacing="2.5">
+          <textPath href="#a2" startOffset="10%">× PIGALLE × PARIS × FRANCE ×</textPath>
+        </text>
+      </svg>
+      <div class="medallion-card-label">Noir sur Noir<br>Bouchon officiel</div>
+    </div>
+    <!-- Rouge variant -->
+    <div class="medallion-card" style="background:var(--rouge);">
+      <svg width="160" height="160" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="rgba(10,8,8,0.9)" stroke="rgba(10,8,8,0.4)" stroke-width="0.5"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(10,8,8,0.2)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="43" fill="none" stroke="rgba(10,8,8,0.15)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="36" fill="none" stroke="rgba(10,8,8,0.1)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="22" fill="#E22A1A"/>
+        <text font-family="BigShoulders, sans-serif" font-size="22" font-weight="500" fill="#0A0808" text-anchor="middle" x="60" y="67">P</text>
+        <path id="a3" d="M 16,60 A 44,44 0 0,1 104,60" fill="none"/>
+        <path id="a4" d="M 16,60 A 44,44 0 0,0 104,60" fill="none"/>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(10,8,8,0.5)" letter-spacing="2.5">
+          <textPath href="#a3" startOffset="5%">LIQUEUR DE CERISE FRANÇAISE</textPath>
+        </text>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(10,8,8,0.5)" letter-spacing="2.5">
+          <textPath href="#a4" startOffset="10%">× PIGALLE × PARIS × FRANCE ×</textPath>
+        </text>
+      </svg>
+      <div class="medallion-card-label" style="color:rgba(10,8,8,0.5);">Noir sur Rouge<br>Variante label</div>
+    </div>
+    <!-- Light / print -->
+    <div class="medallion-card" style="background:var(--cream);">
+      <svg width="160" height="160" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="58" fill="#0A0808" stroke="rgba(10,8,8,0.2)" stroke-width="0.5"/>
+        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(10,8,8,0.1)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="43" fill="none" stroke="rgba(10,8,8,0.07)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="36" fill="none" stroke="rgba(10,8,8,0.05)" stroke-width="0.8"/>
+        <circle cx="60" cy="60" r="22" fill="#2a1212"/>
+        <text font-family="BigShoulders, sans-serif" font-size="22" font-weight="500" fill="#F5F0EA" text-anchor="middle" x="60" y="67">P</text>
+        <path id="a5" d="M 16,60 A 44,44 0 0,1 104,60" fill="none"/>
+        <path id="a6" d="M 16,60 A 44,44 0 0,0 104,60" fill="none"/>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(245,240,234,0.5)" letter-spacing="2.5">
+          <textPath href="#a5" startOffset="5%">LIQUEUR DE CERISE FRANÇAISE</textPath>
+        </text>
+        <text font-family="Antonio, sans-serif" font-size="6" fill="rgba(245,240,234,0.5)" letter-spacing="2.5">
+          <textPath href="#a6" startOffset="10%">× PIGALLE × PARIS × FRANCE ×</textPath>
+        </text>
+      </svg>
+      <div class="medallion-card-label" style="color:var(--stone-dark);">Noir sur Crème<br>Impression / co-branding</div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE & TONE -->
+<section id="voice" class="section">
+  <div class="section-label">05 — Voix & Ton</div>
+  <div class="voice-grid">
+    <div class="voice-card rouge">
+      <div class="voice-title">Séducteur</div>
+      <div class="voice-desc">La marque parle avec une confiance tranquille. Pas de cris, pas de promesses excessives. Une intensité qui se révèle progressivement.</div>
+      <div class="voice-tags">
+        <span>Direct</span><span>Sensoriel</span><span>Parisien</span>
+      </div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-title">Artisanal</div>
+      <div class="voice-desc">Pigalle revendique son origine française avec fierté. Le savoir-faire, la qualité, la cerise noire — des mots qui reviennent, simples et vrais.</div>
+      <div class="voice-tags">
+        <span>Authentique</span><span>Précis</span><span>Terroir</span>
+      </div>
+    </div>
+    <div class="voice-quote">
+      Né dans l'un des quartiers les plus électriques de Paris — là où la nuit révèle ce que le jour dissimule.
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components" class="section">
+  <div class="section-label">06 — Composants UI</div>
+  <div class="components-grid">
+
+    <div class="component-group">
+      <div class="component-group-label">Boutons</div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+        <button class="btn btn-primary">Commander maintenant</button>
+        <button class="btn btn-secondary">En savoir plus</button>
+        <button class="btn btn-ghost">Découvrir →</button>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-group-label">Badges</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span class="badge badge-rouge">Nouveauté</span>
+        <span class="badge badge-noir">Édition Limitée</span>
+        <span class="badge badge-outline">Paris · France</span>
+        <span class="badge badge-rouge">18% vol.</span>
+        <span class="badge badge-noir">70cl</span>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-group-label">Formulaire</div>
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:320px;">
+        <input class="input-field" type="text" placeholder="Votre prénom">
+        <input class="input-field" type="email" placeholder="Adresse email">
+        <button class="btn btn-primary" style="width:100%;justify-content:center;">S'inscrire</button>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <div class="component-group-label">Carte Produit</div>
+      <div class="product-card" style="max-width:220px;">
+        <div class="product-card-img">P</div>
+        <div class="product-card-body">
+          <div class="product-card-name">Pigalle</div>
+          <div class="product-card-sub">Liqueur de Cerise · 70cl</div>
+          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-family:var(--font-display);font-size:22px;font-weight:500;color:var(--rouge);">€28</span>
+            <button class="btn btn-ghost" style="padding:8px 16px;font-size:9px;">Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Spacing system -->
+  <div style="margin-top:64px;">
+    <div class="component-group-label" style="font-family:var(--font-secondary);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--stone-dark);margin-bottom:28px;">Espacement</div>
+    <div class="spacing-row">
+      <div class="spacing-unit">
+        <div class="spacing-bar" style="height:8px;"></div>
+        <div class="spacing-label">xs<br>8px</div>
+      </div>
+      <div class="spacing-unit">
+        <div class="spacing-bar" style="height:16px;"></div>
+        <div class="spacing-label">sm<br>16px</div>
+      </div>
+      <div class="spacing-unit">
+        <div class="spacing-bar" style="height:32px;"></div>
+        <div class="spacing-label">md<br>32px</div>
+      </div>
+      <div class="spacing-unit">
+        <div class="spacing-bar" style="height:64px;"></div>
+        <div class="spacing-label">lg<br>64px</div>
+      </div>
+      <div class="spacing-unit">
+        <div class="spacing-bar" style="height:128px;"></div>
+        <div class="spacing-label">xl<br>128px</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<div style="border-top:1px solid rgba(255,255,255,0.05);">
+  <div class="footer">
+    <div class="footer-brand">Pigalle</div>
+    <div class="footer-meta">
+      Design System · v1.0<br>
+      Liqueur de Cerise Française<br>
+      Paris · France · 2025
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pigalle — Présentation Distributeurs</title>
+<script src="deck-stage.js"></script>
+<style>
+  @font-face { font-family:'BigShoulders'; src:url('assets/fonts/BigShouldersDisplay-Regular.ttf') format('truetype'); font-weight:400; }
+  @font-face { font-family:'BigShoulders'; src:url('assets/fonts/BigShouldersDisplay-Medium.ttf') format('truetype'); font-weight:500; }
+  @font-face { font-family:'Antonio'; src:url('assets/fonts/Antonio-VariableFont_wght.ttf') format('truetype'); font-weight:100 700; }
+  @font-face { font-family:'WorkSans'; src:url('assets/fonts/WorkSans-VariableFont_wght.ttf') format('truetype'); font-weight:100 900; }
+
+  :root {
+    --noir:       #0A0808;
+    --noir-soft:  #160D0D;
+    --rouge:      #E22A1A;
+    --rouge-deep: #B81F0E;
+    --rouge-lt:   #F04030;
+    --cerise:     #7A1415;
+    --cerise-dk:  #3D0809;
+    --stone:      #EDE8E3;
+    --stone-mid:  #C8C1B9;
+    --stone-dk:   #9A9390;
+    --cream:      #F5F0EA;
+    --fd: 'BigShoulders', sans-serif;
+    --fs: 'Antonio', sans-serif;
+    --fb: 'WorkSans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { background:#000; }
+
+  section {
+    background: var(--noir);
+    color: var(--stone);
+    font-family: var(--fb);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── LOGO COMPONENT ──────────────────────────────────────── */
+  .logo { display:flex; flex-direction:column; align-items:flex-start; gap:0; line-height:1; }
+  .logo-paris { font-family:var(--fs); font-weight:300; font-size:9px; letter-spacing:0.38em; text-transform:uppercase; color:var(--stone-mid); margin-bottom:1px; }
+  .logo-name  { font-family:var(--fd); font-weight:500; font-size:22px; letter-spacing:0.05em; text-transform:uppercase; color:var(--stone); line-height:0.88; }
+  .logo-sub   { font-family:var(--fs); font-weight:300; font-size:7.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--rouge); margin-top:2px; }
+
+  .logo-lg { display:flex; flex-direction:column; align-items:center; gap:0; text-align:center; }
+  .logo-lg .logo-paris { font-size:14px; letter-spacing:0.45em; color:rgba(237,232,227,0.6); }
+  .logo-lg .logo-name  { font-size:160px; letter-spacing:0.03em; color:var(--stone); line-height:0.85; }
+  .logo-lg .logo-sub   { font-size:13px; letter-spacing:0.55em; color:rgba(237,232,227,0.6); margin-top:6px; }
+
+  .logo-lg-rouge { display:flex; flex-direction:column; align-items:center; gap:0; text-align:center; }
+  .logo-lg-rouge .logo-paris { font-family:var(--fs); font-weight:300; font-size:14px; letter-spacing:0.45em; text-transform:uppercase; color:rgba(10,8,8,0.55); margin-bottom:2px; }
+  .logo-lg-rouge .logo-name  { font-family:var(--fd); font-weight:500; font-size:160px; letter-spacing:0.03em; text-transform:uppercase; color:var(--noir); line-height:0.85; }
+  .logo-lg-rouge .logo-sub   { font-family:var(--fs); font-weight:300; font-size:13px; letter-spacing:0.55em; text-transform:uppercase; color:rgba(10,8,8,0.55); margin-top:6px; }
+
+  /* ── FOOTER ───────────────────────────────────────────────── */
+  .foot {
+    position:absolute; bottom:0; left:0; right:0; height:56px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 80px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    z-index:10;
+  }
+  .foot-r { border-top:1px solid rgba(10,8,8,0.1); }
+  .slide-num { font-family:var(--fs); font-size:10px; letter-spacing:0.2em; color:var(--stone-dk); }
+  .slide-num-dark { color:rgba(10,8,8,0.35); }
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────────── */
+  .display { font-family:var(--fd); font-weight:500; text-transform:uppercase; line-height:0.88; letter-spacing:0.03em; }
+  .display-xl { font-size:180px; }
+  .display-lg { font-size:120px; }
+  .display-md { font-size:80px; }
+  .display-sm { font-size:52px; }
+
+  .label { font-family:var(--fs); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--rouge); }
+  .label-dk { color:rgba(10,8,8,0.5); }
+  .label-lt { color:rgba(237,232,227,0.45); }
+
+  .body-lg { font-size:22px; font-weight:300; line-height:1.7; color:var(--stone-mid); }
+  .body-md { font-size:17px; font-weight:300; line-height:1.75; color:var(--stone-mid); }
+  .body-sm { font-size:13px; font-weight:300; line-height:1.7; color:var(--stone-dk); }
+
+  /* ── HELPERS ──────────────────────────────────────────────── */
+  .rule { width:40px; height:1px; background:var(--rouge); }
+  .hdivider { width:100%; height:1px; background:rgba(255,255,255,0.06); }
+  .hdivider-dk { background:rgba(10,8,8,0.1); }
+  .tag { display:inline-block; font-family:var(--fs); font-size:9px; letter-spacing:0.22em; text-transform:uppercase; padding:7px 14px; border:1px solid rgba(237,232,227,0.15); color:var(--stone-mid); }
+  .tag-rouge { background:var(--rouge); color:var(--noir); border-color:var(--rouge); }
+  .tag-dk { border-color:rgba(10,8,8,0.2); color:rgba(10,8,8,0.6); }
+
+  /* Stats */
+  .stat-val { font-family:var(--fd); font-weight:500; font-size:88px; line-height:0.9; color:var(--stone); text-transform:uppercase; }
+  .stat-unit { font-family:var(--fs); font-size:20px; letter-spacing:0.15em; color:var(--rouge); }
+  .stat-label { font-family:var(--fs); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone-dk); margin-top:10px; }
+
+  /* Features */
+  .feat-num { font-family:var(--fd); font-weight:500; font-size:64px; line-height:0.9; color:rgba(226,42,26,0.25); min-width:80px; }
+  .feat-title { font-family:var(--fs); font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:8px; }
+  .feat-row { display:flex; gap:32px; align-items:flex-start; padding:28px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+
+  /* Bars */
+  .bar-track { height:3px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden; margin-top:12px; }
+  .bar-fill { height:100%; background:var(--rouge); border-radius:2px; }
+
+  /* Price table */
+  .price-row { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; padding:22px 0; border-bottom:1px solid rgba(255,255,255,0.06); align-items:center; }
+  .price-cell-label { font-family:var(--fs); font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--stone-dk); }
+  .price-cell-val { font-family:var(--fd); font-weight:500; font-size:28px; color:var(--stone); letter-spacing:0.05em; }
+
+  /* Quote decoration */
+  .quote-mark { font-family:var(--fd); font-size:320px; line-height:0.8; color:rgba(226,42,26,0.1); position:absolute; top:20px; left:60px; pointer-events:none; user-select:none; }
+
+  /* Slide types */
+  section.rouge-slide { background:var(--rouge); color:var(--noir); }
+  section.cerise-slide { background:var(--cerise-dk); }
+  section.cream-slide { background:var(--cream); color:var(--noir); }
+
+  /* Contact */
+  .contact-card { background:var(--noir-soft); padding:48px; border-left:3px solid var(--rouge); }
+  .contact-name { font-family:var(--fd); font-weight:500; font-size:40px; text-transform:uppercase; letter-spacing:0.05em; color:var(--stone); margin-bottom:8px; }
+  .contact-role { font-family:var(--fs); font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--rouge); margin-bottom:24px; }
+  .contact-line { font-size:15px; font-weight:300; color:var(--stone-mid); margin-bottom:8px; }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+<!-- ══ 01 COVER ══════════════════════════════════════════════ -->
+<section data-label="Cover" style="display:grid;grid-template-columns:1fr 1fr;">
+
+  <!-- Left: ROUGE with logo -->
+  <div style="background:var(--rouge);display:flex;flex-direction:column;justify-content:space-between;padding:80px;position:relative;overflow:hidden;">
+    <!-- Big decorative P -->
+    <div style="position:absolute;right:-40px;top:-40px;font-family:var(--fd);font-size:520px;font-weight:500;color:rgba(10,8,8,0.08);line-height:1;pointer-events:none;user-select:none;">P</div>
+
+    <!-- Logo top-left -->
+    <div style="position:relative;z-index:2;">
+      <div style="font-family:var(--fs);font-weight:300;font-size:12px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(10,8,8,0.5);margin-bottom:3px;">Paris · France</div>
+      <div style="font-family:var(--fd);font-weight:500;font-size:38px;letter-spacing:0.04em;text-transform:uppercase;color:var(--noir);line-height:0.88;">Pigalle</div>
+      <div style="font-family:var(--fs);font-weight:300;font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(10,8,8,0.5);margin-top:3px;">Liqueur de Cerise</div>
+    </div>
+
+    <!-- Center display -->
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:24px;">
+      <div style="font-family:var(--fd);font-weight:500;font-size:130px;letter-spacing:0.02em;text-transform:uppercase;color:var(--noir);line-height:0.82;">Pigalle</div>
+      <div style="width:48px;height:2px;background:var(--noir);opacity:0.3;"></div>
+      <div style="font-family:var(--fs);font-size:15px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(10,8,8,0.55);">Liqueur de Cerise Française</div>
+      <p style="font-size:16px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.75;max-width:380px;">Un caractère aussi intense que le quartier parisien qui lui a donné son nom.</p>
+    </div>
+
+    <!-- Bottom meta -->
+    <div style="position:relative;z-index:2;display:flex;gap:40px;">
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <span style="font-family:var(--fd);font-size:24px;font-weight:500;color:var(--noir);">70cl</span>
+        <span style="font-family:var(--fs);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(10,8,8,0.4);">Contenu</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <span style="font-family:var(--fd);font-size:24px;font-weight:500;color:var(--noir);">18%</span>
+        <span style="font-family:var(--fs);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(10,8,8,0.4);">Vol.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <span style="font-family:var(--fd);font-size:24px;font-weight:500;color:var(--noir);">2025</span>
+        <span style="font-family:var(--fs);font-size:8px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(10,8,8,0.4);">Lancement</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: bottle on noir -->
+  <div style="background:#000;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+    <img src="assets/bottle-3d.png" style="height:100%;width:100%;object-fit:cover;object-position:center;opacity:0.95;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to left,transparent 50%,rgba(226,42,26,0.08) 100%);"></div>
+    <!-- Slide label -->
+    <div style="position:absolute;bottom:24px;right:80px;font-family:var(--fs);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,232,227,0.3);">Présentation Distributeurs · 2025</div>
+  </div>
+</section>
+
+<!-- ══ 02 MANIFESTE ════════════════════════════════════════════ -->
+<section data-label="Manifeste" class="cerise-slide" style="padding:0;position:relative;">
+  <div style="display:grid;grid-template-columns:5fr 3fr;height:100%;">
+    <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:48px;position:relative;">
+      <div class="quote-mark">"</div>
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:32px;">
+        <div class="label">Manifeste</div>
+        <div class="display display-md" style="color:var(--stone);line-height:1.0;font-size:76px;max-width:900px;">
+          Né dans l'un des quartiers<br>les plus électriques de Paris —<br>
+          <span style="color:var(--rouge);">là où la nuit révèle<br>ce que le jour dissimule.</span>
+        </div>
+        <div class="hdivider"></div>
+        <p class="body-lg" style="max-width:640px;">Pigalle est une liqueur de cerise française. Pas sage. Pas conventionnelle. Profonde, sensuelle, directe — exactement comme le quartier qui lui a donné son nom.</p>
+      </div>
+    </div>
+    <!-- Right rouge band -->
+    <div style="background:var(--rouge);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;position:relative;overflow:hidden;">
+      <div style="position:absolute;font-family:var(--fd);font-size:340px;font-weight:500;color:rgba(10,8,8,0.07);line-height:1;">P</div>
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;padding:40px;">
+        <div style="font-family:var(--fs);font-weight:300;font-size:10px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-bottom:3px;">Paris · France</div>
+        <div style="font-family:var(--fd);font-weight:500;font-size:80px;letter-spacing:0.03em;text-transform:uppercase;color:var(--noir);line-height:0.85;">Pigalle</div>
+        <div style="font-family:var(--fs);font-weight:300;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-top:4px;">Liqueur de Cerise</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">02 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 03 LE QUARTIER ═══════════════════════════════════════════ -->
+<section data-label="Le Quartier" style="display:grid;grid-template-columns:2fr 5fr;">
+  <div style="background:var(--rouge);padding:80px 60px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-60px;bottom:-60px;font-family:var(--fd);font-size:400px;font-weight:500;color:rgba(10,8,8,0.06);line-height:1;">P</div>
+    <div style="font-family:var(--fs);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(10,8,8,0.45);">Origine</div>
+    <div style="position:relative;z-index:2;">
+      <div style="font-family:var(--fd);font-weight:500;font-size:88px;text-transform:uppercase;color:var(--noir);line-height:0.85;letter-spacing:0.02em;">Pigalle</div>
+      <div style="font-family:var(--fd);font-weight:500;font-size:32px;text-transform:uppercase;color:rgba(10,8,8,0.4);letter-spacing:0.04em;margin-top:4px;">Paris, France</div>
+    </div>
+    <div>
+      <div style="font-family:var(--fs);font-size:10px;letter-spacing:0.15em;color:rgba(10,8,8,0.4);">48°52'55"N · 2°20'06"E</div>
+      <div style="font-family:var(--fs);font-size:10px;letter-spacing:0.15em;color:rgba(10,8,8,0.4);margin-top:4px;">18e & 9e arrondissement</div>
+    </div>
+  </div>
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:56px;">
+    <div class="label">L'Origine</div>
+    <div class="display display-sm" style="color:var(--stone);font-size:64px;">Le quartier<br>qui ne dort jamais.</div>
+    <p class="body-md" style="max-width:640px;">Pigalle n'est pas un quartier ordinaire. Pendant des décennies, il a été le cœur battant de la nuit parisienne — des artistes, des rebelles, des fêtards. Aujourd'hui, il est l'un des quartiers les plus créatifs de la capitale.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <div style="padding-top:20px;border-top:2px solid var(--rouge);">
+        <div class="label" style="font-size:9px;margin-bottom:8px;">Énergie</div>
+        <div class="body-sm">Bouillonnante, nocturne, créative, parisienne dans l'âme</div>
+      </div>
+      <div style="padding-top:20px;border-top:2px solid var(--rouge);">
+        <div class="label" style="font-size:9px;margin-bottom:8px;">Héritage</div>
+        <div class="body-sm">Cabarets, artistes, contre-culture — une identité forte et assumée</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">03 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 04 LE PRODUIT ═══════════════════════════════════════════ -->
+<section data-label="Le Produit" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="position:relative;overflow:hidden;background:#000;">
+    <img src="assets/bottle-photo.jpeg" style="width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.85;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--noir) 100%);"></div>
+  </div>
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:44px;">
+    <div class="label">Le Produit</div>
+    <div class="display display-lg" style="color:var(--stone);font-size:96px;">La<br>bouteille.</div>
+    <div class="rule"></div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div class="feat-row">
+        <div class="feat-num">01</div>
+        <div><div class="feat-title">Verre cannelé noir</div><p class="body-sm">Architecture verticale unique. Chaque angle révèle une lumière différente.</p></div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-num">02</div>
+        <div><div class="feat-title">Label rouge signal</div><p class="body-sm">Aplat pur #E22A1A. Contraste maximal. Impossible à ignorer sur une étagère.</p></div>
+      </div>
+      <div class="feat-row" style="border:none;">
+        <div class="feat-num">03</div>
+        <div><div class="feat-title">Médaillon gravé</div><p class="body-sm">Bouchon monogrammé P — artisanat visible dès la première saisie.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">04 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 05 LA RECETTE ═══════════════════════════════════════════ -->
+<section data-label="La Recette" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">La Recette</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;flex:1;margin:48px 0;align-items:stretch;">
+    <div style="background:var(--noir-soft);padding:48px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="label" style="font-size:9px;">Fruit</div>
+      <div><div class="display" style="font-size:56px;color:var(--stone);">Cerise<br>Noire</div><p class="body-sm" style="margin-top:16px;">Sélectionnée à pleine maturité — profondeur, acidité, douceur naturelle.</p></div>
+    </div>
+    <div style="background:var(--rouge);padding:48px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="font-family:var(--fs);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(10,8,8,0.5);">Degré</div>
+      <div><div class="display" style="font-size:80px;color:var(--noir);">18%</div><div style="font-family:var(--fs);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-top:4px;">Vol.</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.6);margin-top:16px;line-height:1.7;">Un équilibre subtil entre intensité du fruit et rondeur en bouche.</p></div>
+    </div>
+    <div style="background:var(--noir-soft);padding:48px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="label" style="font-size:9px;">Format</div>
+      <div><div class="display" style="font-size:80px;color:var(--stone);">70cl</div><p class="body-sm" style="margin-top:16px;">Format premium standard, adapté aux bars, cavistes et tables gastronomiques.</p></div>
+    </div>
+    <div style="background:var(--cerise-dk);padding:48px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="label" style="font-size:9px;">Origine</div>
+      <div><div class="display" style="font-size:44px;color:var(--stone);">Fabriqué<br>en France</div><p class="body-sm" style="margin-top:16px;">Production 100% française. Qualité artisanale, ambitions internationales.</p></div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">05 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 06 LE DESIGN ════════════════════════════════════════════ -->
+<section data-label="Le Design" class="rouge-slide" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:44px;position:relative;z-index:2;">
+    <div class="label label-dk">Design</div>
+    <div class="display display-lg" style="font-size:100px;color:var(--noir);line-height:0.85;">Un objet<br>de désir.</div>
+    <div style="width:40px;height:1px;background:rgba(10,8,8,0.3);"></div>
+    <p style="font-size:18px;font-weight:300;line-height:1.75;color:rgba(10,8,8,0.65);max-width:460px;">La bouteille Pigalle n'est pas conçue pour se fondre dans le décor. Elle est conçue pour arrêter le regard, provoquer la curiosité, déclencher l'achat.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span class="tag tag-dk">Verre Nervuré</span><span class="tag tag-dk">Noir Profond</span><span class="tag tag-dk">Rouge Signal</span><span class="tag tag-dk">Médaillon Gravé</span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(0,0,0,0.12);">
+    <img src="assets/bottle-3d.png" style="height:92%;width:auto;object-fit:contain;filter:drop-shadow(0 40px 80px rgba(10,8,8,0.35));">
+  </div>
+  <div class="foot foot-r" style="grid-column:span 2;">
+    <div class="logo logo-lg-rouge" style="flex-direction:row;align-items:center;gap:12px;">
+      <div style="font-family:var(--fd);font-weight:500;font-size:22px;letter-spacing:0.04em;text-transform:uppercase;color:var(--noir);">Pigalle</div>
+      <div style="width:1px;height:16px;background:rgba(10,8,8,0.2);"></div>
+      <div style="font-family:var(--fs);font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(10,8,8,0.45);">Liqueur de Cerise</div>
+    </div>
+    <div class="slide-num slide-num-dark">06 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 07 MÉDAILLON ════════════════════════════════════════════ -->
+<section data-label="Le Médaillon" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="background:var(--noir-soft);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
+    <img src="assets/cap-medallion.png" style="width:480px;height:480px;object-fit:contain;border-radius:50%;filter:drop-shadow(0 0 80px rgba(226,42,26,0.2));">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,transparent 40%,var(--noir-soft) 100%);"></div>
+  </div>
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:44px;">
+    <div class="label">Bouchon · Médaillon</div>
+    <div class="display display-md" style="color:var(--stone);font-size:72px;">Un détail<br>qui marque<br><span style="color:var(--rouge);">les esprits.</span></div>
+    <div class="rule"></div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="label" style="font-size:9px;">Monogramme</div><p class="body-sm">Le "P" central, serti dans des cercles concentriques — un tampon visible dès la saisie.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="label" style="font-size:9px;">Texte Circulaire</div><p class="body-sm">"Liqueur de Cerise Française" gravé en courbe autour du P.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-top:20px;">
+        <div class="label" style="font-size:9px;">Finition</div><p class="body-sm">Noir mat. Discret de loin, précis de près. L'artisanat qui ne se montre pas — il se révèle.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">07 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 08 LE MARCHÉ ════════════════════════════════════════════ -->
+<section data-label="Le Marché" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">Le Marché</div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;flex:1;padding:48px 0;align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div class="display display-sm" style="font-size:52px;color:var(--stone);">La catégorie liqueurs en pleine renaissance.</div>
+      <p class="body-md" style="max-width:380px;">Le marché mondial des liqueurs artisanales est en forte croissance, porté par une demande croissante d'authenticité, de terroir et de design premium.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;">
+        <div style="background:var(--noir-soft);padding:36px;display:flex;flex-direction:column;gap:10px;">
+          <div class="stat-val" style="font-size:72px;">+12%</div><div class="stat-unit" style="font-size:16px;">/&nbsp;an</div>
+          <div class="bar-track"><div class="bar-fill" style="width:75%;"></div></div>
+          <div class="stat-label">Croissance liqueurs premium France</div>
+        </div>
+        <div style="background:var(--rouge);padding:36px;display:flex;flex-direction:column;gap:10px;">
+          <div class="stat-val" style="font-size:60px;color:var(--noir);">€2.4Md</div><div class="stat-unit" style="font-size:14px;color:rgba(10,8,8,0.5);">Marché FR</div>
+          <div class="bar-track" style="background:rgba(10,8,8,0.1);"><div class="bar-fill" style="width:60%;background:var(--noir);"></div></div>
+          <div class="stat-label" style="color:rgba(10,8,8,0.5);">Spiritueux &amp; liqueurs France</div>
+        </div>
+        <div style="background:var(--noir-soft);padding:36px;display:flex;flex-direction:column;gap:10px;">
+          <div class="stat-val" style="font-size:72px;">68%</div><div class="stat-unit" style="font-size:16px;">acheteurs</div>
+          <div class="bar-track"><div class="bar-fill" style="width:68%;"></div></div>
+          <div class="stat-label">Prêts à payer plus pour design premium</div>
+        </div>
+      </div>
+      <div style="padding:28px 32px;background:var(--cerise-dk);">
+        <div class="label" style="font-size:9px;margin-bottom:10px;">Opportunité</div>
+        <p class="body-md" style="font-size:15px;">La cerise noire française — sous-représentée dans les circuits premium. Pigalle comble ce vide avec un positionnement fort et un design inoubliable.</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">08 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 09 CONSOMMATEUR ════════════════════════════════════════ -->
+<section data-label="Le Consommateur" style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+  <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:28px;border-right:1px solid rgba(255,255,255,0.05);">
+    <div class="label">Cible</div>
+    <div class="display" style="font-size:52px;color:var(--stone);">L'amateur<br>éclairé.</div>
+    <p class="body-sm">25–45 ans. Curieux, urbain, exigeant. Il cherche des produits qui lui ressemblent — rares, beaux, vrais.</p>
+  </div>
+  <div style="background:var(--rouge);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:28px;">
+    <div style="font-family:var(--fs);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(10,8,8,0.45);">Profil</div>
+    <div class="display" style="font-size:60px;color:var(--noir);">Paris.<br>Barcelone.<br>Londres.</div>
+    <p style="font-size:15px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.75;">Métropoles créatives. Bars à cocktails, cavistes indépendants, restaurants bistronomiques.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="tag tag-dk">On-Trade</span><span class="tag tag-dk">Cavistes</span><span class="tag tag-dk">Épiceries Fines</span><span class="tag tag-dk">E-commerce</span>
+    </div>
+  </div>
+  <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;gap:32px;border-left:1px solid rgba(255,255,255,0.05);">
+    <div class="label">Occasions</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:18px;margin-bottom:18px;">
+        <div class="feat-title">Apéritif</div><p class="body-sm">Sur glace ou en spritz. La rouge sur la table, c'est déjà une mise en scène.</p>
+      </div>
+      <div style="border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:18px;margin-bottom:18px;">
+        <div class="feat-title">Cocktail</div><p class="body-sm">Un socle parfait pour les bartenders — profondeur de saveur, couleur spectaculaire.</p>
+      </div>
+      <div>
+        <div class="feat-title">Digestif</div><p class="body-sm">Pur, frais, intense. La conclusion naturelle d'un bon repas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 3;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">09 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 10 POSITIONNEMENT ══════════════════════════════════════ -->
+<section data-label="Positionnement" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">Positionnement</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;flex:1;padding:40px 0;">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div class="display display-md" style="color:var(--stone);font-size:72px;">La case vide<br>du marché.</div>
+      <p class="body-md" style="max-width:480px;">Entre les liqueurs industrielles et les digestifs traditionnels, il manquait une marque premium, jeune, désirable. Française dans l'âme, internationale dans les ambitions.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <span class="tag tag-rouge">Premium</span><span class="tag">Contemporain</span><span class="tag">Français</span><span class="tag">Désirable</span>
+      </div>
+    </div>
+    <!-- Positioning matrix -->
+    <div style="position:relative;width:100%;max-width:520px;margin:0 auto;aspect-ratio:1;">
+      <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,0.1);"></div>
+      <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.1);"></div>
+      <div style="position:absolute;top:50%;left:6px;transform:translateY(-50%);font-family:var(--fs);font-size:8px;letter-spacing:0.2em;color:var(--stone-dk);text-transform:uppercase;">Traditionnel</div>
+      <div style="position:absolute;top:50%;right:6px;transform:translateY(-50%);font-family:var(--fs);font-size:8px;letter-spacing:0.2em;color:var(--stone-dk);text-transform:uppercase;">Contemporain</div>
+      <div style="position:absolute;top:6px;left:50%;transform:translateX(-50%);font-family:var(--fs);font-size:8px;letter-spacing:0.2em;color:var(--stone-dk);text-transform:uppercase;">Premium</div>
+      <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-family:var(--fs);font-size:8px;letter-spacing:0.2em;color:var(--stone-dk);text-transform:uppercase;">Accessible</div>
+      <div style="position:absolute;top:32%;left:18%;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.18);"></div>
+      <div style="position:absolute;top:29%;left:22%;font-family:var(--fs);font-size:9px;color:var(--stone-dk);">Classiques FR</div>
+      <div style="position:absolute;top:62%;left:60%;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.18);"></div>
+      <div style="position:absolute;top:59%;left:64%;font-family:var(--fs);font-size:9px;color:var(--stone-dk);">Marques GD</div>
+      <div style="position:absolute;top:46%;right:18%;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.18);"></div>
+      <div style="position:absolute;top:43%;right:28%;font-family:var(--fs);font-size:9px;color:var(--stone-dk);">Imports</div>
+      <div style="position:absolute;top:18%;right:16%;width:28px;height:28px;border-radius:50%;background:var(--rouge);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:var(--fd);font-weight:500;font-size:14px;color:var(--noir);">P</span>
+      </div>
+      <div style="position:absolute;top:8%;right:46%;font-family:var(--fd);font-size:16px;font-weight:500;color:var(--rouge);letter-spacing:0.08em;text-transform:uppercase;">Pigalle</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">10 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 11 DIFFÉRENCES ═════════════════════════════════════════ -->
+<section data-label="Nos Différences" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;background:var(--cerise-dk);">
+  <div class="label">Ce qui nous distingue</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;flex:1;margin:48px 0;">
+    <div style="background:rgba(255,255,255,0.03);padding:44px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="feat-num">01</div>
+      <div><div class="feat-title" style="font-size:16px;">Design<br>iconique</div><p class="body-sm" style="margin-top:12px;">Shelf impact maximum dans n'importe quel circuit de distribution.</p></div>
+    </div>
+    <div style="background:var(--rouge);padding:44px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="font-family:var(--fd);font-size:80px;font-weight:500;line-height:0.9;color:rgba(10,8,8,0.15);">02</div>
+      <div><div style="font-family:var(--fs);font-size:16px;letter-spacing:0.12em;text-transform:uppercase;color:var(--noir);margin-bottom:12px;">Identité<br>forte</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.7;">Pigalle — le nom dit tout. Mémorable du premier regard.</p></div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);padding:44px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="feat-num">03</div>
+      <div><div class="feat-title" style="font-size:16px;">Terroir<br>français</div><p class="body-sm" style="margin-top:12px;">Cerise noire française. Savoir-faire artisanal, ambitions mondiales.</p></div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);padding:44px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="feat-num">04</div>
+      <div><div class="feat-title" style="font-size:16px;">Versatilité<br>mixologie</div><p class="body-sm" style="margin-top:12px;">Les bartenders l'adoptent pour profondeur de saveur et esthétique sans pareil.</p></div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">11 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 12 LA MARQUE — LOGO SLIDE ══════════════════════════════ -->
+<section data-label="La Marque" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="background:var(--rouge);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;font-family:var(--fd);font-size:480px;font-weight:500;color:rgba(10,8,8,0.06);line-height:1;pointer-events:none;">P</div>
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;padding:60px;">
+      <div style="font-family:var(--fs);font-weight:300;font-size:16px;letter-spacing:0.45em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-bottom:4px;">Paris · France</div>
+      <div style="font-family:var(--fd);font-weight:500;font-size:180px;letter-spacing:0.02em;text-transform:uppercase;color:var(--noir);line-height:0.82;">Pigalle</div>
+      <div style="font-family:var(--fs);font-weight:300;font-size:14px;letter-spacing:0.55em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-top:6px;">Liqueur de Cerise</div>
+    </div>
+  </div>
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:40px;">
+    <div class="label">La Marque</div>
+    <div class="display" style="font-size:64px;color:var(--stone);">Un nom.<br>Une identité.<br><span style="color:var(--rouge);">Une ville.</span></div>
+    <div class="rule"></div>
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div style="padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="label" style="font-size:9px;margin-bottom:6px;">Le Nom</div>
+        <p class="body-sm">Pigalle — immédiatement évocateur pour toute personne connaissant Paris. Un ancrage géographique fort qui transporte à l'international l'art de vivre parisien.</p>
+      </div>
+      <div style="padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="label" style="font-size:9px;margin-bottom:6px;">Le Logotype</div>
+        <p class="body-sm">Condensé, vertical, fort. Big Shoulders Display Medium — une typographie architecturale qui évoque les enseignes parisiennes.</p>
+      </div>
+      <div>
+        <div class="label" style="font-size:9px;margin-bottom:6px;">La Couleur Signature</div>
+        <p class="body-sm">Rouge signal #E22A1A — pas un rouge romantique, pas un rouge timide. Un rouge qui impose.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">12 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 13 LA GAMME ════════════════════════════════════════════ -->
+<section data-label="La Gamme" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">La Gamme</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;flex:1;align-items:center;padding:40px 0;">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div class="display" style="font-size:72px;color:var(--stone);">Une bouteille.<br>Une vision.</div>
+      <p class="body-md" style="max-width:440px;">Pigalle débute avec un format emblématique, conçu pour s'imposer. L'expansion de la gamme viendra naturellement — portée par la force de l'identité.</p>
+      <div style="display:flex;align-items:center;gap:20px;padding:20px 24px;background:var(--rouge);">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--noir);"></div>
+        <div>
+          <div style="font-family:var(--fd);font-size:20px;font-weight:500;color:var(--noir);text-transform:uppercase;letter-spacing:0.05em;">Pigalle — Liqueur de Cerise</div>
+          <div style="font-family:var(--fs);font-size:9px;letter-spacing:0.18em;color:rgba(10,8,8,0.5);text-transform:uppercase;margin-top:3px;">70cl · 18% Vol. · France</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="assets/bottle-3d.png" style="height:720px;width:auto;object-fit:contain;filter:drop-shadow(0 40px 80px rgba(226,42,26,0.18));">
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">13 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 14 PRIX ════════════════════════════════════════════════ -->
+<section data-label="Prix" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">Architecture de Prix</div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;gap:80px;flex:1;align-items:start;padding:40px 0;">
+    <div style="display:flex;flex-direction:column;gap:24px;padding-top:20px;">
+      <div class="display" style="font-size:52px;color:var(--stone);">Valeur juste.<br>Marges saines.</div>
+      <p class="body-md" style="font-size:15px;max-width:340px;">Un positionnement premium accessible, qui laisse de la marge à chaque acteur — du producteur au consommateur final.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;">
+      <div class="price-row" style="border-bottom:1px solid rgba(255,255,255,0.1);padding:0 0 16px;">
+        <div class="price-cell-label">SKU</div><div class="price-cell-label">Prix achat HT</div><div class="price-cell-label">Prix conseillé TTC</div><div class="price-cell-label">Marge dist.</div>
+      </div>
+      <div class="price-row" style="background:rgba(255,255,255,0.02);">
+        <div><div style="font-family:var(--fd);font-size:20px;font-weight:500;color:var(--stone);text-transform:uppercase;letter-spacing:0.05em;">Pigalle 70cl</div><div class="price-cell-label" style="margin-top:4px;">Unité</div></div>
+        <div class="price-cell-val">À définir</div><div class="price-cell-val" style="color:var(--rouge);">À définir</div><div class="price-cell-val">À définir</div>
+      </div>
+      <div class="price-row">
+        <div><div style="font-family:var(--fd);font-size:20px;font-weight:500;color:var(--stone);text-transform:uppercase;letter-spacing:0.05em;">Carton × 6</div><div class="price-cell-label" style="margin-top:4px;">Unité de vente standard</div></div>
+        <div class="price-cell-val">À définir</div><div class="price-cell-val" style="color:var(--rouge);">—</div><div class="price-cell-val">À définir</div>
+      </div>
+      <div class="price-row" style="background:rgba(255,255,255,0.02);">
+        <div><div style="font-family:var(--fd);font-size:20px;font-weight:500;color:var(--stone);text-transform:uppercase;letter-spacing:0.05em;">Carton × 12</div><div class="price-cell-label" style="margin-top:4px;">Remise volume</div></div>
+        <div class="price-cell-val">À définir</div><div class="price-cell-val" style="color:var(--rouge);">—</div><div class="price-cell-val">À définir</div>
+      </div>
+      <div style="padding:20px 24px;background:var(--rouge);margin-top:2px;">
+        <p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.65);line-height:1.7;">Les conditions tarifaires définitives seront partagées lors d'un entretien. Notre modèle favorise des partenariats à long terme.</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">14 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 15 DISTRIBUTION ════════════════════════════════════════ -->
+<section data-label="Distribution" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="background:var(--rouge);padding:100px;display:flex;flex-direction:column;justify-content:center;gap:36px;">
+    <div class="label label-dk">Distribution</div>
+    <div class="display" style="font-size:88px;color:var(--noir);line-height:0.85;">Là où ça<br>compte.</div>
+    <p style="font-size:17px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.75;max-width:400px;">Pigalle ne cherche pas à être partout. Elle cherche à être exactement là où son audience la cherche — et à y briller.</p>
+  </div>
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:0;">
+    <div class="label" style="margin-bottom:32px;">Canaux cibles</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="font-family:var(--fd);font-size:40px;font-weight:500;color:var(--rouge);min-width:40px;line-height:1;">A</div>
+      <div><div class="feat-title">On-Trade Premium</div><p class="body-sm">Bars à cocktails, restaurants bistronomiques, hôtels design.</p></div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="font-family:var(--fd);font-size:40px;font-weight:500;color:var(--rouge);min-width:40px;line-height:1;">B</div>
+      <div><div class="feat-title">Cavistes Indépendants</div><p class="body-sm">Canal de confiance pour les amateurs éclairés.</p></div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="font-family:var(--fd);font-size:40px;font-weight:500;color:var(--rouge);min-width:40px;line-height:1;">C</div>
+      <div><div class="feat-title">GD Sélective</div><p class="body-sm">Rayons spiritueux premium — visibilité et volume sans sacrifier le positionnement.</p></div>
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;padding:24px 0;">
+      <div style="font-family:var(--fd);font-size:40px;font-weight:500;color:var(--rouge);min-width:40px;line-height:1;">D</div>
+      <div><div class="feat-title">E-commerce & Direct</div><p class="body-sm">Site propre et marketplaces premium — données consommateurs, marge supérieure.</p></div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">15 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 16 SUPPORT MARKETING ═══════════════════════════════════ -->
+<section data-label="Support Marketing" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">Support Marketing</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;flex:1;margin:48px 0;">
+    <div style="background:var(--noir-soft);padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;">
+      <div class="label" style="font-size:9px;">Assets Visuels</div>
+      <div class="feat-title" style="font-size:18px;line-height:1.3;">Photos &amp; vidéos<br>produit HD</div>
+      <p class="body-sm">Pack complet — bottle shots, lifestyle, cocktails. Libre d'utilisation pour nos partenaires.</p>
+    </div>
+    <div style="background:var(--rouge);padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;">
+      <div style="font-family:var(--fs);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(10,8,8,0.4);">Présence Digitale</div>
+      <div style="font-family:var(--fs);font-size:18px;letter-spacing:0.1em;text-transform:uppercase;color:var(--noir);line-height:1.3;">Social Media<br>&amp; Contenu</div>
+      <p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.7;">Contenu régulier sur Instagram &amp; TikTok. Co-branding possible pour nos partenaires.</p>
+    </div>
+    <div style="background:var(--noir-soft);padding:48px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;">
+      <div class="label" style="font-size:9px;">Activation</div>
+      <div class="feat-title" style="font-size:18px;line-height:1.3;">Dégustations<br>&amp; événements</div>
+      <p class="body-sm">Kits de dégustation, supports PLV, formations bar. Nous venons à vous.</p>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">16 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 17 DIGITAL & SOCIAL ════════════════════════════════════ -->
+<section data-label="Digital & Social" style="display:grid;grid-template-columns:1fr 1fr;">
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:40px;">
+    <div class="label">Présence Digitale</div>
+    <div class="display" style="font-size:72px;color:var(--stone);">Une marque<br>qui vit<br><span style="color:var(--rouge);">en ligne.</span></div>
+    <p class="body-md" style="max-width:460px;">Pigalle construit sa communauté sur les réseaux — une esthétique forte, du contenu authentique, une conversation directe avec ses futurs clients.</p>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--rouge);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--noir);"></div>
+        <span style="font-family:var(--fs);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,8,8,0.7);">Instagram · @pigalle_liqueur</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--noir-soft);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--rouge);"></div>
+        <span style="font-family:var(--fs);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mid);">TikTok · @pigalleliqueur</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--noir-soft);">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--rouge);"></div>
+        <span style="font-family:var(--fs);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mid);">Site Web · pigalle.fr</span>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--noir-soft);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+    <div style="width:380px;background:#0A0808;border:1px solid rgba(255,255,255,0.07);">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--rouge);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:15px;font-weight:500;color:var(--noir);">P</div>
+        <div>
+          <div style="font-family:var(--fs);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone);">pigalle_liqueur</div>
+          <div style="font-family:var(--fs);font-size:8px;letter-spacing:0.15em;color:var(--stone-dk);text-transform:uppercase;">Paris, France</div>
+        </div>
+      </div>
+      <div style="aspect-ratio:1;background:linear-gradient(135deg,#1a0505,#0A0808);display:flex;align-items:center;justify-content:center;">
+        <img src="assets/bottle-3d.png" style="height:95%;width:auto;object-fit:contain;">
+      </div>
+      <div style="padding:16px;">
+        <p style="font-family:var(--fb);font-size:12px;font-weight:300;color:var(--stone-mid);line-height:1.6;"><span style="color:var(--stone);font-weight:500;">pigalle_liqueur</span> La nuit révèle ce que le jour dissimule. 🍒 #Pigalle #Paris</p>
+        <div style="margin-top:10px;font-family:var(--fs);font-size:9px;letter-spacing:0.1em;color:var(--stone-dk);text-transform:uppercase;">2h · 842 j'aime</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="grid-column:span 2;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">17 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 18 PRESSE ══════════════════════════════════════════════ -->
+<section data-label="Presse & Médias" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label">Presse &amp; Médias</div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:48px;">
+    <div class="display" style="font-size:72px;color:var(--stone);text-align:center;">Les retombées<br>à venir.</div>
+    <p class="body-md" style="max-width:640px;text-align:center;">Pigalle est en cours de lancement. Les partenaires distributeurs seront les premiers à bénéficier des retombées presse au moment du lancement officiel.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;width:100%;max-width:900px;">
+      <div style="background:var(--rouge);height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--fs);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,8,8,0.5);">Presse à venir</span></div>
+      <div style="background:var(--noir-soft);height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--fs);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-dk);">Presse à venir</span></div>
+      <div style="background:var(--noir-soft);height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--fs);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-dk);">Presse à venir</span></div>
+      <div style="background:var(--noir-soft);height:80px;display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--fs);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-dk);">Presse à venir</span></div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;">
+    <div class="logo"><div class="logo-paris">Paris · France</div><div class="logo-name">Pigalle</div><div class="logo-sub">Liqueur de Cerise</div></div>
+    <div class="slide-num">18 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 19 PARTENARIAT ════════════════════════════════════════ -->
+<section data-label="Partenariat" class="rouge-slide" style="padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div class="label label-dk">Ce qu'on propose</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;flex:1;align-items:center;padding:40px 0;">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div class="display" style="font-size:88px;color:var(--noir);line-height:0.85;">Un vrai<br>partenariat.</div>
+      <p style="font-size:17px;font-weight:300;color:rgba(10,8,8,0.6);line-height:1.75;max-width:420px;">On ne cherche pas juste des vendeurs. On cherche des partenaires qui croient en la marque et qui ont envie de la faire grandir avec nous.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="padding:24px 0;border-bottom:1px solid rgba(10,8,8,0.1);display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:var(--fd);font-size:44px;font-weight:500;color:rgba(10,8,8,0.15);min-width:52px;line-height:1;">01</div>
+        <div><div style="font-family:var(--fs);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--noir);margin-bottom:6px;">Exclusivité Territoriale</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.55);line-height:1.7;">Zones définies, protégées, avec des objectifs communs et réalistes.</p></div>
+      </div>
+      <div style="padding:24px 0;border-bottom:1px solid rgba(10,8,8,0.1);display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:var(--fd);font-size:44px;font-weight:500;color:rgba(10,8,8,0.15);min-width:52px;line-height:1;">02</div>
+        <div><div style="font-family:var(--fs);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--noir);margin-bottom:6px;">Formation &amp; Outils</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.55);line-height:1.7;">Supports de vente, fiches produit, formations équipes.</p></div>
+      </div>
+      <div style="padding:24px 0;border-bottom:1px solid rgba(10,8,8,0.1);display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:var(--fd);font-size:44px;font-weight:500;color:rgba(10,8,8,0.15);min-width:52px;line-height:1;">03</div>
+        <div><div style="font-family:var(--fs);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--noir);margin-bottom:6px;">Co-marketing</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.55);line-height:1.7;">Budget co-marketing pour partenaires engagés. On investit si vous investissez.</p></div>
+      </div>
+      <div style="padding:24px 0;display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:var(--fd);font-size:44px;font-weight:500;color:rgba(10,8,8,0.15);min-width:52px;line-height:1;">04</div>
+        <div><div style="font-family:var(--fs);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--noir);margin-bottom:6px;">Flexibilité</div><p style="font-size:13px;font-weight:300;color:rgba(10,8,8,0.55);line-height:1.7;">Minimum de commande raisonnable — on grandit ensemble.</p></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(10,8,8,0.1);padding-top:20px;">
+    <div style="display:flex;flex-direction:column;gap:0;line-height:1;">
+      <div style="font-family:var(--fs);font-weight:300;font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(10,8,8,0.45);margin-bottom:1px;">Paris · France</div>
+      <div style="font-family:var(--fd);font-weight:500;font-size:22px;letter-spacing:0.05em;text-transform:uppercase;color:var(--noir);line-height:0.88;">Pigalle</div>
+      <div style="font-family:var(--fs);font-weight:300;font-size:7.5px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(10,8,8,0.4);margin-top:2px;">Liqueur de Cerise</div>
+    </div>
+    <div class="slide-num slide-num-dark">19 / 20</div>
+  </div>
+</section>
+
+<!-- ══ 20 CONTACT ════════════════════════════════════════════ -->
+<section data-label="Contact" style="display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;">
+  <!-- Decorative rings -->
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.05;">
+    <svg width="100%" height="100%" viewBox="0 0 960 1080" preserveAspectRatio="xMidYMid slice">
+      <circle cx="480" cy="540" r="500" stroke="#E22A1A" stroke-width="1" fill="none"/>
+      <circle cx="480" cy="540" r="380" stroke="#E22A1A" stroke-width="1" fill="none"/>
+      <circle cx="480" cy="540" r="260" stroke="#E22A1A" stroke-width="1" fill="none"/>
+      <circle cx="480" cy="540" r="140" stroke="#E22A1A" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+  <!-- Left CTA -->
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:2;">
+    <div class="label">Prochaines Étapes</div>
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div class="display" style="font-size:100px;color:var(--stone);line-height:0.85;">On se<br>parle ?</div>
+      <div style="width:48px;height:2px;background:var(--rouge);"></div>
+      <p class="body-md" style="max-width:400px;">Pigalle est disponible pour des discussions avec des distributeurs et cavistes sélectionnés. Prenons rendez-vous.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <span class="tag tag-rouge">Dégustation</span>
+      <span class="tag">Présentation complète</span>
+      <span class="tag">Conditions commerciales</span>
+    </div>
+  </div>
+  <!-- Right: contact -->
+  <div style="padding:100px;display:flex;flex-direction:column;justify-content:center;gap:32px;border-left:1px solid rgba(255,255,255,0.05);position:relative;z-index:2;">
+    <div class="label">Contact</div>
+    <div class="contact-card">
+      <div class="contact-name">À compléter</div>
+      <div class="contact-role">Fondateur · Pigalle Liqueur</div>
+      <div class="contact-line"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f794989983969483b7879e90969b9b92d99185">[email&#160;protected]</a></div>
+      <div class="contact-line">+33 (0)6 — — — —</div>
+      <div class="contact-line">Paris, France</div>
+    </div>
+    <!-- Logo large -->
+    <div style="display:flex;flex-direction:column;gap:0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);">
+      <div style="font-family:var(--fs);font-weight:300;font-size:10px;letter-spacing:0.42em;text-transform:uppercase;color:var(--stone-dk);margin-bottom:2px;">Paris · France</div>
+      <div style="font-family:var(--fd);font-weight:500;font-size:52px;letter-spacing:0.04em;text-transform:uppercase;color:var(--stone);line-height:0.88;">Pigalle</div>
+      <div style="font-family:var(--fs);font-weight:300;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--rouge);margin-top:4px;">Liqueur de Cerise</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
